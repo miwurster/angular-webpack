@@ -1,0 +1,12 @@
+<h3>Dashboard</h3>
+<h5>Top 4 Heroes</h5>
+<div class="btn-group  btn-group-justified" role="group">
+  <div class="btn-group btn-group-lg" role="group" *ngFor="let hero of heroes">
+    <button type="button" class="btn btn-info" (click)="gotoDetail(hero)">
+      {{hero.name}}
+    </button>
+  </div>
+</div>
+<hr>
+<h5>Hero Search</h5>
+<hero-search></hero-search>
