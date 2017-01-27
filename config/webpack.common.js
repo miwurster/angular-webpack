@@ -1,18 +1,16 @@
 
 const webpack = require('webpack');
 
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
 
 module.exports = {
 
   /*
-   * http://webpack.github.io/docs/configuration.html#entry
+   * https://webpack.js.org/configuration/entry-context/#entry
    */
   entry: {
     'polyfills': './src/polyfills.ts',
@@ -21,7 +19,7 @@ module.exports = {
   },
 
   /*
-   * http://webpack.github.io/docs/configuration.html#output
+   * https://webpack.js.org/configuration/output
    */
   output: {
     path: helpers.root('dist'),
@@ -31,108 +29,104 @@ module.exports = {
   },
 
   /*
-   * http://webpack.github.io/docs/configuration.html#resolve
+   * https://webpack.js.org/configuration/resolve
    */
   resolve: {
-    // http://webpack.github.io/docs/configuration.html#resolve-extensions
-    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
-    // Make sure root is src
-    root: helpers.root('src'),
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
   },
 
+  /**
+   * https://webpack.js.org/loaders
+   */
   module: {
-
-    preLoaders: [],
-
-    /*
-     * http://webpack.github.io/docs/configuration.html#module-loaders
-     * http://webpack.github.io/docs/list-of-loaders.html
-     */
-    loaders: [
+    rules: [
       {
         test: /\.ts$/,
-        loaders: ['ts', 'angular2-template-loader'],
-      },
-      { test: /\.html$/, loader: 'html' },
-      {
-        test: /\.css$/,
-        exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss'])
+        use: ['ts-loader', 'angular2-template-loader'],
       },
       {
-        test: /\.css$/,
-        include: helpers.root('src', 'app'),
-        loaders: ['raw', 'postcss']
+        test: /\.html$/,
+        use: ['html-loader']
       },
+      // TODO
+      // {
+      //   test: /\.css$/,
+      //   exclude: helpers.root('src', 'app'),
+      //   loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss'])
+      // },
+      // {
+      //   test: /\.css$/,
+      //   include: helpers.root('src', 'app'),
+      //   loaders: ['raw', 'postcss']
+      // },
+      // {
+      //   test: /\.scss$/,
+      //   exclude: helpers.root('src', 'app'),
+      //   loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url', 'sass'])
+      // },
       {
         test: /\.scss$/,
-        exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url', 'sass'])
-      },
-      {
-        test: /\.scss$/,
         include: helpers.root('src', 'app'),
-        loaders: ['raw', 'postcss', 'resolve-url', 'sass']
+        use: ['raw-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
       },
-      { test: /\.json$/, loader: 'json' },
       {
         test: /\.(png|jpe?g|gif|ico|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        use: ['file-loader?name=assets/[name].[hash].[ext]']
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url?limit=8192&mimetype=application/font-woff&name=assets/[name].[hash].[ext]'
+        use: ['url-loader?limit=8192&mimetype=application/font-woff&name=assets/[name].[hash].[ext]']
       },
-    ],
-
-    postLoaders: [],
+    ]
   },
 
   /*
-   * https://webpack.github.io/docs/list-of-plugins.html
+   * https://webpack.js.org/plugins
    */
   plugins: [
 
     /*
-     * https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
+     * https://webpack.js.org/plugins/commons-chunk-plugin
      */
-    new CommonsChunkPlugin({
-      name: ['main', 'vendor', 'polyfills'],
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['main', 'vendor', 'polyfills'],
     }),
 
-    /*
-     * https://www.npmjs.com/package/copy-webpack-plugin
-     */
-    new CopyWebpackPlugin([
-      { from: 'src/static' },
-    ]),
-
-    /*
-     * https://github.com/ampedandwired/html-webpack-plugin
-     */
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
+    // TODO
+    // /*
+    //  * https://www.npmjs.com/package/copy-webpack-plugin
+    //  */
+    // new CopyWebpackPlugin([
+    //   { from: 'src/static' },
+    // ]),
+    //
+    // /*
+    //  * https://github.com/ampedandwired/html-webpack-plugin
+    //  */
+    // new HtmlWebpackPlugin({
+    //   template: 'src/index.html',
+    // }),
   ],
 
-  /*
-   * PostCSS
-   * https://github.com/postcss/postcss-loader
-   */
-  postcss: function () {
-    return [require('autoprefixer')];
-  },
-
-  /*
-   * Include polyfills or mocks for various node stuff
-   * https://webpack.github.io/docs/configuration.html#node
-   */
-  node: {
-    global: 'window',
-    crypto: 'empty',
-    process: false,
-    module: false,
-    clearImmediate: false,
-    setImmediate: false,
-  },
+  // TODO
+  // /*
+  //  * PostCSS
+  //  * https://github.com/postcss/postcss-loader
+  //  */
+  // postcss: function () {
+  //   return [require('autoprefixer')];
+  // },
+  //
+  // /*
+  //  * Include polyfills or mocks for various node stuff
+  //  * https://webpack.github.io/docs/configuration.html#node
+  //  */
+  // node: {
+  //   global: 'window',
+  //   crypto: 'empty',
+  //   process: false,
+  //   module: false,
+  //   clearImmediate: false,
+  //   setImmediate: false,
+  // },
 };

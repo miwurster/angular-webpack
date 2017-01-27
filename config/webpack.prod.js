@@ -12,24 +12,26 @@ module.exports = webpackMerge(common, {
 
   devtool: 'source-map',
 
-  htmlLoader: {
-    // Workaround for Angular2
-    minimize: false
-  },
+  // TODO
+  // htmlLoader: {
+  //   // Workaround for Angular2
+  //   minimize: false
+  // },
 
   /*
-   * https://webpack.github.io/docs/list-of-plugins.html
+   * https://webpack.js.org/plugins
    */
   plugins: [
 
     new ExtractTextPlugin('[name].[hash].css'),
 
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
+    // TODO
+    // new webpack.NoErrorsPlugin(),
+    // new webpack.optimize.DedupePlugin(),
+    // new webpack.optimize.UglifyJsPlugin(),
 
     /*
-     * https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * https://webpack.js.org/plugins/define-plugin
      */
     new webpack.DefinePlugin({
       'process.env': {
