@@ -12,12 +12,6 @@ module.exports = webpackMerge(common, {
 
   devtool: 'source-map',
 
-  // TODO
-  // htmlLoader: {
-  //   // Workaround for Angular2
-  //   minimize: false
-  // },
-
   /*
    * https://webpack.js.org/plugins
    */
@@ -25,10 +19,19 @@ module.exports = webpackMerge(common, {
 
     new ExtractTextPlugin('[name].[hash].css'),
 
-    // TODO
-    // new webpack.NoErrorsPlugin(),
-    // new webpack.optimize.DedupePlugin(),
-    // new webpack.optimize.UglifyJsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: true
+      },
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      // Workaround for Angular2
+      minimize: false
+    }),
 
     /*
      * https://webpack.js.org/plugins/define-plugin

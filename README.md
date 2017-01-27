@@ -16,7 +16,6 @@ npm run build  # Runs the production build
 ### Useful Resources
 
 * [Awesome Webpack](https://github.com/d3viant0ne/awesome-webpack)
-* [Getting Started with Webpack 2](https://blog.madewithenvy.com/getting-started-with-webpack-2-ed2b86c68783#.aixkt01k9)
 
 
 ### TODOs

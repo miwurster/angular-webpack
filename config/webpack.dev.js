@@ -41,15 +41,14 @@ module.exports = webpackMerge(common, {
     }),
   ],
 
-  // TODO
-  // /*
-  //  * http://webpack.github.io/docs/configuration.html#devserver
-  //  */
-  // devServer: {
-  //   port: 3000,
-  //   historyApiFallback: true,
-  //   watchOptions: { aggregateTimeout: 300, poll: 1000 },
-  //   outputPath: helpers.root('dist'),
-  // },
+  /*
+   * https://webpack.js.org/configuration/dev-server
+   */
+  devServer: {
+    port: 3000,
+    historyApiFallback: true,
+    watchOptions: { aggregateTimeout: 300, poll: 1000 },
+    contentBase: helpers.root('dist'),
+  },
 
 });

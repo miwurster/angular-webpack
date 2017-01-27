@@ -1,9 +1,9 @@
 
 const webpack = require('webpack');
 
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const helpers = require('./helpers');
 
@@ -42,28 +42,27 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: ['ts-loader', 'angular2-template-loader'],
+        use: ['awesome-typescript-loader', 'angular2-template-loader'],
       },
       {
         test: /\.html$/,
         use: ['html-loader']
       },
-      // TODO
-      // {
-      //   test: /\.css$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss'])
-      // },
-      // {
-      //   test: /\.css$/,
-      //   include: helpers.root('src', 'app'),
-      //   loaders: ['raw', 'postcss']
-      // },
-      // {
-      //   test: /\.scss$/,
-      //   exclude: helpers.root('src', 'app'),
-      //   loader: ExtractTextPlugin.extract(['css?sourceMap', 'postcss', 'resolve-url', 'sass'])
-      // },
+      {
+        test: /\.css$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader'])
+      },
+      {
+        test: /\.css$/,
+        include: helpers.root('src', 'app'),
+        use: ['raw-loader', 'postcss-loader']
+      },
+      {
+        test: /\.scss$/,
+        exclude: helpers.root('src', 'app'),
+        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader', 'resolve-url-loader', 'sass-loader'])
+      },
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
@@ -85,6 +84,15 @@ module.exports = {
    */
   plugins: [
 
+    /**
+     * https://github.com/angular/angular/issues/11580
+     */
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      helpers.root('src'),
+      {}
+    ),
+
     /*
      * https://webpack.js.org/plugins/commons-chunk-plugin
      */
@@ -92,41 +100,19 @@ module.exports = {
       names: ['main', 'vendor', 'polyfills'],
     }),
 
-    // TODO
-    // /*
-    //  * https://www.npmjs.com/package/copy-webpack-plugin
-    //  */
-    // new CopyWebpackPlugin([
-    //   { from: 'src/static' },
-    // ]),
-    //
-    // /*
-    //  * https://github.com/ampedandwired/html-webpack-plugin
-    //  */
-    // new HtmlWebpackPlugin({
-    //   template: 'src/index.html',
-    // }),
+    /*
+     * https://github.com/kevlened/copy-webpack-plugin
+     */
+    new CopyWebpackPlugin([
+      { from: 'src/static' },
+    ]),
+
+    /*
+     * https://webpack.js.org/plugins/html-webpack-plugin/
+     */
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
   ],
 
-  // TODO
-  // /*
-  //  * PostCSS
-  //  * https://github.com/postcss/postcss-loader
-  //  */
-  // postcss: function () {
-  //   return [require('autoprefixer')];
-  // },
-  //
-  // /*
-  //  * Include polyfills or mocks for various node stuff
-  //  * https://webpack.github.io/docs/configuration.html#node
-  //  */
-  // node: {
-  //   global: 'window',
-  //   crypto: 'empty',
-  //   process: false,
-  //   module: false,
-  //   clearImmediate: false,
-  //   setImmediate: false,
-  // },
 };
