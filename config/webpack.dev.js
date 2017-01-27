@@ -11,20 +11,27 @@ const ENV = process.env.ENV = process.env.NODE_ENV = 'development';
 
 module.exports = webpackMerge(common, {
 
-  debug: true,
-
-  // http://webpack.github.io/docs/configuration.html#devtool
   devtool: 'cheap-module-eval-source-map',
 
   /*
-   * https://webpack.github.io/docs/list-of-plugins.html
+   * https://webpack.js.org/plugins
    */
   plugins: [
 
+    /**
+     * https://webpack.js.org/plugins/loader-options-plugin
+     */
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
+
+    /**
+     * https://webpack.js.org/plugins/extract-text-webpack-plugin
+     */
     new ExtractTextPlugin('[name].css'),
 
     /*
-     * https://webpack.github.io/docs/list-of-plugins.html#defineplugin
+     * https://webpack.js.org/plugins/define-plugin
      */
     new webpack.DefinePlugin({
       'process.env': {
@@ -35,13 +42,13 @@ module.exports = webpackMerge(common, {
   ],
 
   /*
-   * http://webpack.github.io/docs/configuration.html#devserver
+   * https://webpack.js.org/configuration/dev-server
    */
   devServer: {
     port: 3000,
     historyApiFallback: true,
     watchOptions: { aggregateTimeout: 300, poll: 1000 },
-    outputPath: helpers.root('dist'),
+    contentBase: helpers.root('dist'),
   },
 
 });

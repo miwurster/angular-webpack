@@ -1,6 +1,6 @@
 import { Injectable, ModuleWithProviders } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { InMemoryWebApiModule, InMemoryDbService } from 'angular2-in-memory-web-api';
+import { InMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { Hero } from './hero.model';
 
