@@ -1,6 +1,7 @@
 import { Injectable, ModuleWithProviders } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { InMemoryWebApiModule, InMemoryDbService } from 'angular-in-memory-web-api';
+
+import { InMemoryDbService } from 'angular-in-memory-web-api';
 
 import { Hero } from './hero.model';
 
@@ -57,13 +58,10 @@ export class HeroService {
   }
 }
 
-class HeroDataService implements InMemoryDbService {
+export class HeroDataService implements InMemoryDbService {
   createDb() {
     let heroes: Hero[] = HEROES;
     // This results in an '/app/heroes' endpoint
     return {heroes};
   }
 }
-
-export const HERO_WEB_API_MODULE: ModuleWithProviders
-  = InMemoryWebApiModule.forRoot(HeroDataService);

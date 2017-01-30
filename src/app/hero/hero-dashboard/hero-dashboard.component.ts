@@ -3,14 +3,14 @@ import { Router }            from '@angular/router';
 
 import * as _ from 'lodash';
 
-import { Hero } from '../hero/hero.model';
-import { HeroService } from '../hero/hero.service';
+import { Hero } from '../hero.model';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'dashbaord',
-  templateUrl: './dashboard.component.html'
+  templateUrl: './hero-dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class HeroDashboardComponent implements OnInit {
 
   heroes: Hero[];
 
