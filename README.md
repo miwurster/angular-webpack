@@ -24,4 +24,3 @@ npm run build  # Runs the production build
 - [x] Implement tutorial _Tour of Heroes_
 - [x] Incorporate unit testing with Karma and Jasmine
 - [ ] Incorporate end-to-end testing with Protractor
-- [ ] Move to [`angular-cli`](https://github.com/angular/angular-cli)
