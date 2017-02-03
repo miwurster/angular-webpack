@@ -97,7 +97,7 @@ module.exports = {
      * https://webpack.js.org/plugins/commons-chunk-plugin
      */
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['main', 'vendor', 'polyfills'],
+      name: ['main', 'vendor', 'polyfills'],
     }),
 
     /*
