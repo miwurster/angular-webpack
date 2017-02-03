@@ -10,7 +10,7 @@
     "test": "karma start",
     "build": "rimraf dist && npm run lint && webpack --config config/webpack.prod.js --progress --profile --bail",
     "build:serve": "lite-server --config config/lite-server.json",
-    "start": "webpack-dev-server --inline --progress"
+    "start": "webpack-dev-server --inline --hot"
   },
   "dependencies": {
     "@angular/common": "~2.4.5",
@@ -66,7 +66,7 @@
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
     "tslint": "^4.4.2",
-    "typescript": "^2.1.5",
+    "typescript": "2.1.5",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^2.2.0",

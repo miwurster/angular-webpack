@@ -84,6 +84,8 @@ module.exports = {
    */
   plugins: [
 
+    new webpack.NamedModulesPlugin(),
+
     /**
      * https://github.com/angular/angular/issues/11580
      */
