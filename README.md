@@ -8,6 +8,7 @@ This is a proof-of-concept [application](https://angular.io/docs/ts/latest/tutor
 
 ```
 npm install
+npm test
 npm start      # Starts the development server
 npm run build  # Runs the production build
 ```
