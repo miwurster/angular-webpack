@@ -2,6 +2,9 @@
   <div class="panel-heading">
     <h3 class="panel-title pull-left">List of Heroes</h3>
     <div class="btn-group pull-right">
+      <button (click)="refresh()" class="btn btn-primary btn-sm">
+        <i class="fa fa-refresh"></i>
+      </button>
       <button [routerLink]="['./new']" class="btn btn-primary btn-sm">
         <i class="fa fa-plus"></i>
       </button>

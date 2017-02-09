@@ -1,6 +1,7 @@
 <div *ngIf="hero">
   <div class="panel panel-default">
     <div class="panel-body">
+      <p *ngIf="mode === EditorMode.CreateHero"><strong>Create new Hero:</strong></p>
       <div class="input-group">
         <div class="input-group-addon">{{hero.id || '#' }}</div>
         <input type="text" class="form-control" placeholder="Name" [(ngModel)]="hero.name"/>

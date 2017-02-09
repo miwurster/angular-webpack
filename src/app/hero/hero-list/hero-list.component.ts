@@ -10,21 +10,25 @@ import { HeroService } from '../hero.service';
 export class HeroListComponent implements OnInit {
 
   heroes: Hero[];
-
   selection: Hero;
-
   initialized = false;
 
   constructor(private heroService: HeroService) { }
+
+  refresh(): void {
+    this.heroes = [];
+    this.initialized = false;
+    this.heroService
+        .getHeroes()
+        .then(heroes => this.heroes = heroes)
+        .then(() => this.initialized = true);
+  }
 
   onSelect(hero: Hero): void {
     this.selection = hero;
   }
 
   ngOnInit(): void {
-    this.heroService
-        .getHeroes()
-        .then(heroes => this.heroes = heroes)
-        .then(() => this.initialized = true);
+    this.refresh();
   }
 }

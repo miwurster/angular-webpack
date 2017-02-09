@@ -6,7 +6,7 @@ import { Hero } from '../shared/model';
 @Injectable()
 export class HeroService {
 
-  private basePath = 'api/heroes';
+  static BASE_PATH = 'api/heroes';
 
   private nextId = 10;
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
@@ -18,7 +18,7 @@ export class HeroService {
   }
 
   getHeroes(): Promise<Hero[]> {
-    return this.http.get(this.basePath)
+    return this.http.get(HeroService.BASE_PATH)
                .toPromise()
                .then(response => response.json().data as Hero[])
                .catch(HeroService.handleError);
@@ -26,28 +26,28 @@ export class HeroService {
 
   createHero(name: string): Promise<Hero> {
     let data = JSON.stringify({ id: this.nextId++, name: name });
-    return this.http.post(this.basePath, data, { headers: this.headers })
+    return this.http.post(HeroService.BASE_PATH, data, { headers: this.headers })
                .toPromise()
                .then(response => response.json().data as Hero)
                .catch(HeroService.handleError);
   }
 
   updateHero(hero: Hero): Promise<Hero> {
-    return this.http.put(`${this.basePath}/${hero.id}`, JSON.stringify(hero), { headers: this.headers })
+    return this.http.put(`${HeroService.BASE_PATH}/${hero.id}`, JSON.stringify(hero), { headers: this.headers })
                .toPromise()
                .then(() => hero)
                .catch(HeroService.handleError);
   }
 
-  deleteHero(hero: Hero): Promise<Hero> {
-    return this.http.delete(`${this.basePath}/${hero.id}`, { headers: this.headers })
-               .toPromise()
-               .then(() => hero)
-               .catch(HeroService.handleError);
-  }
+  // deleteHero(hero: Hero): Promise<Hero> {
+  //   return this.http.delete(`${this.basePath}/${hero.id}`, { headers: this.headers })
+  //              .toPromise()
+  //              .then(() => hero)
+  //              .catch(HeroService.handleError);
+  // }
 
   findByName(name: string): Observable<Hero[]> {
-    return this.http.get(`${this.basePath}/?name=${name}`)
+    return this.http.get(`${HeroService.BASE_PATH}/?name=${name}`)
                .map((response: Response) => response.json().data as Hero[]);
   }
 
