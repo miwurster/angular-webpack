@@ -1,17 +1,15 @@
-import { Injectable, ModuleWithProviders } from '@angular/core';
-import { Headers, Http } from '@angular/http';
-
-import { InMemoryDbService } from 'angular-in-memory-web-api';
-
-import { Hero } from './hero.model';
-
-const HEROES: Hero[] = require('../../assets/data.json');
+import { Injectable } from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
+import { Observable } from 'rxjs';
+import { Hero } from '../shared/model';
 
 @Injectable()
 export class HeroService {
 
-  private nextId = 21;
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private basePath = 'api/heroes';
+
+  private nextId = 10;
+  private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
@@ -20,48 +18,41 @@ export class HeroService {
   }
 
   getHeroes(): Promise<Hero[]> {
-    return this.http.get('app/heroes')
-      .toPromise()
-      .then(response => response.json().data as Hero[])
-      .catch(this.handleError);
+    return this.http.get(this.basePath)
+               .toPromise()
+               .then(response => response.json().data as Hero[])
+               .catch(HeroService.handleError);
   }
 
-  create(name: string): Promise<Hero> {
-    let data = JSON.stringify({id: this.nextId++, name: name});
-    return this.http.post('app/heroes', data, {headers: this.headers})
-      .toPromise()
-      .then(response => response.json().data as Hero)
-      .catch(this.handleError);
+  createHero(name: string): Promise<Hero> {
+    let data = JSON.stringify({ id: this.nextId++, name: name });
+    return this.http.post(this.basePath, data, { headers: this.headers })
+               .toPromise()
+               .then(response => response.json().data as Hero)
+               .catch(HeroService.handleError);
   }
 
-  update(hero: Hero): Promise<Hero> {
-    return this.http.put(`app/heroes/${hero.id}`, JSON.stringify(hero), {headers: this.headers})
-      .toPromise()
-      .then(() => hero)
-      .catch(this.handleError);
+  updateHero(hero: Hero): Promise<Hero> {
+    return this.http.put(`${this.basePath}/${hero.id}`, JSON.stringify(hero), { headers: this.headers })
+               .toPromise()
+               .then(() => hero)
+               .catch(HeroService.handleError);
   }
 
-  delete(hero: Hero): Promise<Hero> {
-    return this.http.delete(`app/heroes/${hero.id}`, {headers: this.headers})
-      .toPromise()
-      .then(() => hero)
-      .catch(this.handleError);
+  deleteHero(hero: Hero): Promise<Hero> {
+    return this.http.delete(`${this.basePath}/${hero.id}`, { headers: this.headers })
+               .toPromise()
+               .then(() => hero)
+               .catch(HeroService.handleError);
   }
 
-  // getHeroesSlowly(): Promise<Hero[]> {
-  //   return new Promise<Hero[]>(resolve => setTimeout(resolve, 500)).then(() => this.getHeroes());
-  // }
+  findByName(name: string): Observable<Hero[]> {
+    return this.http.get(`${this.basePath}/?name=${name}`)
+               .map((response: Response) => response.json().data as Hero[]);
+  }
 
-  private handleError(error: any): Promise<any> {
+  private static handleError(error: any): Promise<any> {
     console.error(error);
     return Promise.reject(error.message || error);
-  }
-}
-
-export class HeroDataService implements InMemoryDbService {
-  createDb() {
-    let heroes: Hero[] = HEROES;
-    // This results in an '/app/heroes' endpoint
-    return {heroes};
   }
 }

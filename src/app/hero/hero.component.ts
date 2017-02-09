@@ -3,4 +3,5 @@ import { Component } from '@angular/core';
 @Component({
   template: '<router-outlet></router-outlet>',
 })
-export class HeroComponent { }
+export class HeroComponent {
+}

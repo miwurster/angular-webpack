@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router }            from '@angular/router';
-
-import { Hero } from '../hero.model';
+import { Router } from '@angular/router';
+import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -22,21 +21,21 @@ export class HeroListComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) return;
-    this.heroService.create(name).then(hero => {
+    this.heroService.createHero(name).then(hero => {
       this.heroes.push(hero);
       this.selection = hero;
     });
   }
 
-  delete(): void {
-    this.heroService.delete(this.selection).then(() => {
+  remove(): void {
+    this.heroService.deleteHero(this.selection).then(() => {
       let index = this.heroes.indexOf(this.selection);
       this.heroes.splice(index, 1);
       this.selection = undefined;
     });
   }
 
-  gotoDetail(): void {
+  openDetails(): void {
     this.router.navigate(['/heroes', this.selection.id]);
   }
 

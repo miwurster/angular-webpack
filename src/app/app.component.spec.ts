@@ -2,7 +2,6 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { AppComponent } from './app.component';
 
 describe('First Test', () => {
@@ -16,8 +15,8 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
-      imports: [ RouterTestingModule ],
+      declarations: [AppComponent],
+      imports: [RouterTestingModule],
     });
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

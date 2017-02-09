@@ -6,5 +6,6 @@
 <div class="list-group">
   <button type="button" class="list-group-item"
           *ngFor="let hero of heroes | async | sort:['name']:['asc']"
-          (click)="gotoDetail(hero)">{{hero.name}}</button>
+          (click)="openDetails(hero)">{{hero.name}}
+  </button>
 </div>

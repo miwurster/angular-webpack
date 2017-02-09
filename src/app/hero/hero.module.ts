@@ -1,19 +1,13 @@
-import { NgModule }    from '@angular/core';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule }  from '@angular/http';
-
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
+import { HttpModule } from '@angular/http';
 import { SharedModule } from '../shared/shared.module';
-
 import { HeroRoutingModule } from './hero-routing.module';
-
-import { HeroService, HeroDataService } from './hero.service';
+import { HeroService } from './hero.service';
 import { HeroComponent } from './hero.component';
-import { HeroDashboardComponent } from './hero-dashboard';
-import { HeroSearchService, HeroSearchComponent } from './hero-search';
 import { HeroListComponent } from './hero-list';
 import { HeroDetailComponent } from './hero-detail';
+import { HeroSearchComponent } from './hero-search';
 
 @NgModule({
   imports: [
@@ -21,18 +15,14 @@ import { HeroDetailComponent } from './hero-detail';
     FormsModule,
     HttpModule,
     HeroRoutingModule,
-    InMemoryWebApiModule.forRoot(HeroDataService),
   ],
   declarations: [
     HeroComponent,
-    HeroDashboardComponent,
-    HeroSearchComponent,
     HeroListComponent,
     HeroDetailComponent,
+    HeroSearchComponent,
   ],
-  providers: [
-    HeroService,
-    HeroSearchService,
-  ],
+  providers: [HeroService],
 })
-export class HeroModule { }
+export class HeroModule {
+}

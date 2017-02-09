@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
-
-import { Hero } from '../hero.model';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 
 @Component({
@@ -15,11 +14,7 @@ export class HeroDetailComponent implements OnInit {
   constructor(private heroService: HeroService, private route: ActivatedRoute) { }
 
   save(): void {
-    this.heroService.update(this.hero).then(() => this.goBack());
-  }
-
-  goBack(): void {
-    window.history.back();
+    this.heroService.updateHero(this.hero).then(() => HeroDetailComponent.goBack());
   }
 
   ngOnInit(): void {
@@ -27,5 +22,9 @@ export class HeroDetailComponent implements OnInit {
       let id = +params['id'];
       this.heroService.getHero(id).then(hero => this.hero = hero);
     });
+  }
+
+  static goBack(): void {
+    window.history.back();
   }
 }
