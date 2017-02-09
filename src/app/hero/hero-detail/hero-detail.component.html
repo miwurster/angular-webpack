@@ -1,15 +1,18 @@
 <div *ngIf="hero">
-  <h3>Edit Hero</h3>
-  <div class="input-group">
-    <div class="input-group-addon">{{hero.id}}</div>
-    <input type="text" class="form-control" placeholder="Name" [(ngModel)]="hero.name"/>
-    <span class="input-group-btn">
-      <button type="button" class="btn btn-danger" (click)="save()">
-        <i class="fa fa-pencil"></i>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="input-group">
+        <div class="input-group-addon">{{hero.id || '#' }}</div>
+        <input type="text" class="form-control" placeholder="Name" [(ngModel)]="hero.name"/>
+      </div>
+    </div>
+    <div class="panel-footer">
+      <button type="button" class="btn btn-primary" (click)="save()">
+        <i class="fa fa-save"></i>
       </button>
-      <button type="button" class="btn btn-primary" (click)="goBack()">
-        <i class="fa fa-backward"></i>
+      <button type="button" class="btn btn-default pull-right" (click)="close()">
+        <i class="fa fa-close"></i>
       </button>
-    </span>
+    </div>
   </div>
 </div>

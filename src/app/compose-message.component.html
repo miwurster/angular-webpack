@@ -1,0 +1,24 @@
+<div class="modal fade" bsModal #popup="bs-modal" [config]="{backdrop: 'static'}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="cancel()">
+          <span>&times;</span>
+        </button>
+        <h4 class="modal-title">Contact Crisis Center</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" class="form-control" rows="10"
+                    [(ngModel)]="message" [disabled]="sending"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <spinner [show]="sending"></spinner>
+        <button *ngIf="!sending" type="button" class="btn btn-primary" (click)="send()">Send</button>
+        <button *ngIf="!sending" type="button" class="btn btn-default" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

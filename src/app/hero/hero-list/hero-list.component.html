@@ -1,43 +1,21 @@
-<h3>List of Heroes</h3>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Add Hero: Enter a name" #heroName/>
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-primary" (click)="add(heroName.value); heroName.value=''">
-          <i class="fa fa-plus"></i>
-        </button>
-      </span>
-    </div>
-    <br>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-6">
-    <div class="list-group">
-      <button type="button" class="list-group-item"
-              *ngFor="let hero of heroes"
-              (click)="select(hero)"
-              [class.active]="hero === selection">
-        <span class="badge">{{hero.id}}</span>
-        {{hero.name}}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title pull-left">List of Heroes</h3>
+    <div class="btn-group pull-right">
+      <button [routerLink]="['./new']" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus"></i>
       </button>
     </div>
+    <div class="clearfix"></div>
   </div>
-  <div class="col-xs-6" *ngIf="selection">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">{{selection.name | uppercase}}</h3>
-      </div>
-      <div class="panel-body">
-        <button type="button" class="btn btn-primary" (click)="openDetails()">
-          <i class="fa fa-search"></i>
-          View Details
-        </button>
-        <button type="button" class="btn btn-danger" (click)="remove()">
-          Delete
-        </button>
-      </div>
-    </div>
+  <spinner [show]="!initialized"></spinner>
+  <div class="list-group">
+    <button *ngFor="let hero of heroes"
+            [class.active]="hero === selection"
+            [routerLink]="['./' + hero.id]" (click)="onSelect(hero)"
+            type="button" class="list-group-item">
+      <span class="badge">{{hero.id}}</span>
+      {{hero.name}}
+    </button>
   </div>
 </div>

@@ -5,11 +5,12 @@ import { DummyDataService } from './in-memory-data.service';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { SortPipe } from './sort.pipe';
 import { SpinnerComponent } from './spinner.component';
+import { PageNotFoundComponent } from '../page-not-found.component';
 
 @NgModule({
   imports: [
-    HttpModule,
     CommonModule,
+    HttpModule,
     InMemoryWebApiModule.forRoot(DummyDataService, { delay: 600, apiBase: 'api/' }),
   ],
   declarations: [
@@ -17,9 +18,9 @@ import { SpinnerComponent } from './spinner.component';
     SpinnerComponent,
   ],
   exports: [
+    CommonModule,
     SortPipe,
     SpinnerComponent,
-    CommonModule,
   ]
 })
 export class SharedModule {

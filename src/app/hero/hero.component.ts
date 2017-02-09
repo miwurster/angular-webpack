@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './hero.component.html',
 })
 export class HeroComponent {
 }
