@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { SharedModule } from '../shared/shared.module';
 import { HeroRoutingModule } from './hero-routing.module';
@@ -14,6 +14,7 @@ import { HeroResolver } from './hero-resolver.service';
   imports: [
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     HeroRoutingModule,
   ],
