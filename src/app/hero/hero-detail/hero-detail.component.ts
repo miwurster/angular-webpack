@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 
@@ -27,7 +27,8 @@ export class HeroDetailComponent implements OnInit {
       this.heroService.createHero(name)
           .then(() => console.debug('Created a new hero'))
           .then(() => this.close());
-    } else {
+    }
+    else {
       this.heroService.updateHero(this.hero)
           .then(() => console.debug('Updated an existing hero'))
           .then(() => this.close());
@@ -39,16 +40,17 @@ export class HeroDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.forEach((params: Params) => {
-      let id = params['id'];
-      if (id === 'new') {
-        this.mode = EditorMode.CreateHero;
-        this.hero = new Hero;
-      } else {
-        this.mode = EditorMode.EditHero;
-        this.heroService.getHero(+id).then(hero => this.hero = hero);
-      }
-    });
+    this.route.data
+        .subscribe((data: { hero: Hero }) => {
+          if (data.hero) {
+            this.mode = EditorMode.EditHero;
+            this.hero = data.hero;
+          }
+          else {
+            this.mode = EditorMode.CreateHero;
+            this.hero = new Hero;
+          }
+        });
   }
 
   // Expose enum to template
