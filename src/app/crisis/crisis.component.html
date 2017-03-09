@@ -2,7 +2,13 @@
   <div class="col-lg-7">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Crisis Center</h3>
+        <h3 class="panel-title pull-left">Crisis Center</h3>
+        <div class="btn-group pull-right">
+          <button (click)="contact()" class="btn btn-primary btn-sm">
+            <i class="fa fa-envelope-o"></i>
+          </button>
+        </div>
+        <div class="clearfix"></div>
       </div>
       <div class="panel-body">
         This is a sample component to demo a multi-module project.
@@ -16,4 +22,5 @@
       </ul>
     </div>
   </div>
+  <div dynamic-components></div>
 </div>

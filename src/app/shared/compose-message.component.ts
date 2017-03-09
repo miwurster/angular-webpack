@@ -3,12 +3,13 @@ import { Router } from '@angular/router';
 import { ModalDirective } from 'ng2-bootstrap';
 
 @Component({
-  selector: 'demo-modal-sizes',
   templateUrl: './compose-message.component.html',
 })
 export class ComposeMessageComponent implements AfterViewInit {
 
   sending = false;
+
+  message = '';
 
   @ViewChild('popup')
   public popup: ModalDirective;
@@ -29,6 +30,7 @@ export class ComposeMessageComponent implements AfterViewInit {
 
   private close() {
     this.router.navigate([{ outlets: { popup: null } }]);
+    this.popup.hide();
   }
 
   ngAfterViewInit(): void {
