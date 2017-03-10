@@ -7,9 +7,9 @@ import { ModalDirective } from 'ng2-bootstrap';
 })
 export class ComposeMessageComponent implements AfterViewInit {
 
-  sending = false;
-
   message = '';
+
+  sending = false;
 
   @ViewChild('popup')
   public popup: ModalDirective;

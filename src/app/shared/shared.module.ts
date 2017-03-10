@@ -10,6 +10,7 @@ import { SpinnerComponent } from './spinner.component';
 import { PageNotFoundComponent } from '../page-not-found.component';
 import { DynamicComponentsDirective } from './dynamic-components.directive';
 import { ComposeMessageComponent } from './compose-message.component';
+import { DynamicComponentsService } from './dynamic-components.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,9 @@ import { ComposeMessageComponent } from './compose-message.component';
     SpinnerComponent,
     ComposeMessageComponent,
     DynamicComponentsDirective,
+  ],
+  providers: [
+    DynamicComponentsService,
   ],
   exports: [
     CommonModule,
