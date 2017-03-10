@@ -13,9 +13,9 @@
       <div class="panel-body">
         This is a sample component to demo a multi-module project.
       </div>
-      <spinner [show]="!initialized"></spinner>
+      <spinner [show]="!(initialized | async)"></spinner>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let item of data | sort:['id']:['desc']">
+        <li class="list-group-item" *ngFor="let item of data | async | sort:['id']:['desc']">
           <h4 class="list-group-item-heading">{{item.description}}</h4>
           <p class="list-group-item-text">Crisis ID: {{item.id}}</p>
         </li>

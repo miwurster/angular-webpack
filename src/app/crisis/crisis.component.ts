@@ -1,6 +1,10 @@
-import { Component, OnInit, ComponentFactoryResolver, ViewChild } from '@angular/core';
-import { CrisisService } from './crisis.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../app.reducers';
 import { Crisis } from '../shared/model/crisis.model';
+import { CrisisActions } from './crisis.actions';
+import { CrisisService } from './crisis.service';
 import { ComposeMessageComponent } from '../shared/compose-message.component';
 import { DynamicComponentsDirective } from '../shared/dynamic-components.directive';
 import { DynamicComponentsService } from '../shared/dynamic-components.service';
@@ -11,14 +15,20 @@ import { DynamicComponentsService } from '../shared/dynamic-components.service';
 })
 export class CrisisComponent implements OnInit {
 
-  public data: Crisis[];
-  public initialized = false;
+  data: Observable<Crisis[]>;
+  initialized: Observable<boolean>;
 
   @ViewChild(DynamicComponentsDirective)
   dynamicComponents: DynamicComponentsDirective;
 
-  constructor(private crisisService: CrisisService,
-              private dynamicComponentsService: DynamicComponentsService) { }
+  constructor(private store: Store<AppState>,
+              private crisisActions: CrisisActions,
+              private crisisService: CrisisService,
+              private dynamicComponentsService: DynamicComponentsService) {
+    this.store.subscribe(state => console.debug(state));
+    this.data = this.store.select(state => state.crisis.data);
+    this.initialized = this.store.select(state => state.crisis.initialized);
+  }
 
   contact(): void {
     this.dynamicComponentsService.createComponent(ComposeMessageComponent, this.dynamicComponents,
@@ -30,7 +40,6 @@ export class CrisisComponent implements OnInit {
   ngOnInit(): void {
     this.crisisService
         .findAll()
-        .then((data) => this.data = data)
-        .then(() => this.initialized = true);
+        .then((data) => this.store.dispatch(this.crisisActions.refresh(data)));
   }
 }

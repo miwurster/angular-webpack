@@ -1,6 +1,5 @@
-
 /**
- * Custom Preloading Screen
+ * Custom Pre-loading Screen
  * https://ihatetomatoes.net/create-custom-preloading-screen/
  */
 
@@ -43,38 +42,38 @@ $loader-three-color: #f9c922;
   animation: spin $loader-one-spin linear infinite;
 
   &:before {
-      content: "";
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      bottom: 5px;
-      border-radius: 50%;
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
 
-      // Second loading animation
-      border: $loader-width solid transparent;
-      border-top-color: $loader-two-color;
-      animation: spin $loader-two-spin linear infinite;
+    // Second loading animation
+    border: $loader-width solid transparent;
+    border-top-color: $loader-two-color;
+    animation: spin $loader-two-spin linear infinite;
   }
 
   &:after {
-      content: "";
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      right: 15px;
-      bottom: 15px;
-      border-radius: 50%;
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
 
-      // Third loading animation
-      border: $loader-width solid transparent;
-      border-top-color: $loader-three-color;
-      animation: spin $loader-three-spin linear infinite;
+    // Third loading animation
+    border: $loader-width solid transparent;
+    border-top-color: $loader-three-color;
+    animation: spin $loader-three-spin linear infinite;
   }
 }
 
 @-webkit-keyframes spin {
-  0%   {
+  0% {
     transform: rotate(0deg);
   }
   100% {
@@ -83,7 +82,7 @@ $loader-three-color: #f9c922;
 }
 
 @keyframes spin {
-  0%   {
+  0% {
     transform: rotate(0deg);
   }
   100% {
