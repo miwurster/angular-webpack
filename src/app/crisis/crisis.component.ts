@@ -25,7 +25,6 @@ export class CrisisComponent implements OnInit {
               private crisisActions: CrisisActions,
               private crisisService: CrisisService,
               private dynamicComponentsService: DynamicComponentsService) {
-    this.store.subscribe(state => console.debug(state));
     this.data = this.store.select(state => state.crisis.data);
     this.initialized = this.store.select(state => state.crisis.initialized);
   }
