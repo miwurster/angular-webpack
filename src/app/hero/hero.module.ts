@@ -7,7 +7,6 @@ import { HeroService } from './hero.service';
 import { HeroComponent } from './hero.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { HeroSearchComponent } from './hero-search/hero-search.component';
 import { HeroResolver } from './hero-resolver.service';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { HeroResolver } from './hero-resolver.service';
     HeroComponent,
     HeroListComponent,
     HeroDetailComponent,
-    HeroSearchComponent,
   ],
   providers: [HeroService, HeroResolver],
 })

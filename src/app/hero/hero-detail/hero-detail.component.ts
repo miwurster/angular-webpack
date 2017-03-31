@@ -52,7 +52,8 @@ export class HeroDetailComponent implements OnInit {
       this.heroService.createHero(name)
           .then(() => console.log('Created a new hero'))
           .then(() => this.close());
-    } else {
+    }
+    else {
       this.heroService.updateHero(this.hero)
           .then(() => console.log('Updated an existing hero'))
           .then(() => this.close());
@@ -74,12 +75,14 @@ export class HeroDetailComponent implements OnInit {
           if (data.hero) {
             this.mode = EditorMode.EditHero;
             this.hero = data.hero;
-          } else {
+            this.buildForm();
+          }
+          else {
             this.mode = EditorMode.CreateHero;
             this.hero = new Hero;
+            this.buildForm();
           }
         });
-    this.buildForm();
   }
 
   private buildForm(): void {

@@ -9,6 +9,11 @@ if (process.env.ENV === 'production') {
   enableProdMode();
 }
 
+if (module['hot']) {
+  console.log("Enable hot module replacement (HMR)...");
+  module['hot'].accept();
+}
+
 platformBrowserDynamic().bootstrapModule(AppModule)
                         .then(success => console.log('Bootstrap success'))
                         .catch(error => console.error(error));

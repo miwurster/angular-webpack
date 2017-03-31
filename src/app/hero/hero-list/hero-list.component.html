@@ -1,7 +1,7 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title pull-left">List of Heroes</h3>
-    <div class="btn-group pull-right">
+<div class="card">
+  <h3 class="card-header">List of Heroes</h3>
+  <div class="card-header">
+    <div class="btn-group">
       <button (click)="refresh()" class="btn btn-primary btn-sm">
         <i class="fa fa-refresh"></i>
       </button>
@@ -9,16 +9,16 @@
         <i class="fa fa-plus"></i>
       </button>
     </div>
-    <div class="clearfix"></div>
   </div>
   <changeit-spinner [show]="!initialized"></changeit-spinner>
-  <div class="list-group">
-    <button *ngFor="let hero of heroes"
-            [class.active]="hero === selection"
-            [routerLink]="['./' + hero.id]" (click)="onSelect(hero)"
-            type="button" class="list-group-item">
-      <span class="badge">{{hero.id}}</span>
-      {{hero.name}}
-    </button>
+  <div class="list-group list-group-flush">
+    <a href="" *ngFor="let hero of heroes" (click)="onSelect(hero)" [routerLink]="['./' + hero.id]"
+       [class.active]="hero === selection"
+       class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">{{hero.name}}</h5>
+        <small>{{hero.id}}</small>
+      </div>
+    </a>
   </div>
 </div>

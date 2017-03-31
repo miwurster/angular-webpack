@@ -10,7 +10,7 @@
     "test": "karma start",
     "build": "rimraf dist && npm run lint && webpack --config config/webpack.prod.js --progress --profile --bail",
     "build:serve": "lite-server --config config/lite-server.json",
-    "start": "webpack-dev-server --inline --progress --open"
+    "start": "webpack-dev-server --inline --progress --hot"
   },
   "dependencies": {
     "@angular/animations": "^4.0.0",

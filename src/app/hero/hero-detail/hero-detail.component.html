@@ -1,23 +1,21 @@
 <div *ngIf="hero">
   <form novalidate [formGroup]="heroForm" (ngSubmit)="onSubmit()">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p *ngIf="mode === EditorMode.CreateHero"><strong>Create new Hero:</strong></p>
+    <div class="card">
+      <h3 class="card-header" *ngIf="mode === EditorMode.CreateHero">Create new Hero</h3>
+      <h3 class="card-header" *ngIf="mode === EditorMode.EditHero">Edit Hero</h3>
+      <div class="card-block">
         <div class="form-group has-feedback"
-             [ngClass]="{'has-error': formErrors.name, 'has-success': heroForm.valid}">
+             [ngClass]="{'has-danger': formErrors.name, 'has-success': heroForm.valid }">
           <div class="input-group">
             <div class="input-group-addon">{{hero.id || '#' }}</div>
-            <input type="text" class="form-control" placeholder="Name" id="name"
-                   formControlName="name" required/>
+            <input type="text" class="form-control " placeholder="Name" id="name"
+                   formControlName="name" required
+                   [ngClass]="{'form-control-danger': !heroForm.valid, 'form-control-success': heroForm.valid}"/>
           </div>
-          <span *ngIf="heroForm.valid" class="glyphicon glyphicon-ok form-control-feedback"></span>
-          <span *ngIf="formErrors.name">
-            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-            <span class="help-block" *ngFor="let message of formErrors.name">{{ message }}</span>
-          </span>
+          <div *ngFor="let message of formErrors.name" class="form-control-feedback">{{ message }}</div>
         </div>
       </div>
-      <div class="panel-footer">
+      <div class="card-footer">
         <button type="submit" class="btn btn-primary" [disabled]="!heroForm.valid">
           <i class="fa fa-save"></i>
         </button>
