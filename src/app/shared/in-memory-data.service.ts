@@ -1,10 +1,11 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Hero, Crisis } from './model';
+import { Hero } from './model/hero.model';
+import { Crisis } from './model/crisis.model';
 
 export class DummyDataService implements InMemoryDbService {
   createDb() {
-    let heroes: Hero[] = require('../../assets/hero-data.json');
-    let crisis: Crisis[] = require('../../assets/crisis-data.json');
+    const heroes: Hero[] = require('../../assets/hero-data.json');
+    const crisis: Crisis[] = require('../../assets/crisis-data.json');
     return {
       heroes, // Endpoint /api/heroes
       crisis, // Endpoint /api/crisis

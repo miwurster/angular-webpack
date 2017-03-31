@@ -7,6 +7,11 @@ export class CrisisService {
 
   private basePath = 'api/crisis';
 
+  private static handleError(error: any): Promise<any> {
+    console.error(error);
+    return Promise.reject(error.message || error);
+  }
+
   constructor(private http: Http) { }
 
   findAll(): Promise<Crisis[]> {
@@ -14,10 +19,5 @@ export class CrisisService {
                .toPromise()
                .then(response => response.json().data as Crisis[])
                .catch(CrisisService.handleError);
-  }
-
-  private static handleError(error: any): Promise<any> {
-    console.error(error);
-    return Promise.reject(error.message || error);
   }
 }

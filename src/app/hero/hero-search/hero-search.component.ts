@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { Hero } from '../../shared/model';
+import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'hero-search',
+  selector: 'changeit-hero-search',
   templateUrl: './hero-search.component.html'
 })
 export class HeroSearchComponent implements OnInit {

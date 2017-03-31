@@ -3,7 +3,7 @@ import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'hero-list',
+  selector: 'changeit-hero-list',
   templateUrl: './hero-list.component.html',
   styleUrls: ['./hero-list.component.scss'],
 })

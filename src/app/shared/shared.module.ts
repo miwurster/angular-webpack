@@ -2,39 +2,40 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DummyDataService } from './in-memory-data.service';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { ModalModule } from 'ng2-bootstrap';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DummyDataService } from './in-memory-data.service';
 import { SortPipe } from './sort.pipe';
 import { SpinnerComponent } from './spinner.component';
-import { PageNotFoundComponent } from '../page-not-found.component';
-import { DynamicComponentsDirective } from './dynamic-components.directive';
+import { DynamicComponentDirective } from './dynamic-component.directive';
 import { ComposeMessageComponent } from './compose-message.component';
-import { DynamicComponentsService } from './dynamic-components.service';
+import { DynamicComponentService } from './dynamic-component.service';
 
 @NgModule({
   imports: [
-    FormsModule,
     CommonModule,
+    FormsModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(DummyDataService, { delay: 600, apiBase: 'api/' }),
-    ModalModule.forRoot(), // ng2 Bootstrap
+    ModalModule.forRoot(),
   ],
   declarations: [
     SortPipe,
     SpinnerComponent,
     ComposeMessageComponent,
-    DynamicComponentsDirective,
+    DynamicComponentDirective,
   ],
   providers: [
-    DynamicComponentsService,
+    DynamicComponentService,
   ],
   exports: [
     CommonModule,
+    FormsModule,
+    HttpModule,
     SortPipe,
     SpinnerComponent,
     ComposeMessageComponent,
-    DynamicComponentsDirective,
+    DynamicComponentDirective,
   ]
 })
 export class SharedModule {

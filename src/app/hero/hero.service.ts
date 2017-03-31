@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
-import { Hero } from '../shared/model';
+import { Hero } from '../shared/model/hero.model';
 
 @Injectable()
 export class HeroService {
@@ -10,6 +10,11 @@ export class HeroService {
 
   private nextId = 10;
   private headers: Headers = new Headers({ 'Content-Type': 'application/json' });
+
+  private static handleError(error: any): Promise<any> {
+    console.error(error);
+    return Promise.reject(error.message || error);
+  }
 
   constructor(private http: Http) { }
 
@@ -25,7 +30,7 @@ export class HeroService {
   }
 
   createHero(name: string): Promise<Hero> {
-    let data = JSON.stringify({ id: this.nextId++, name: name });
+    const data = JSON.stringify({ id: this.nextId++, name: name });
     return this.http.post(HeroService.BASE_PATH, data, { headers: this.headers })
                .toPromise()
                .then(response => response.json().data as Hero)
@@ -49,10 +54,5 @@ export class HeroService {
   findByName(name: string): Observable<Hero[]> {
     return this.http.get(`${HeroService.BASE_PATH}/?name=${name}`)
                .map((response: Response) => response.json().data as Hero[]);
-  }
-
-  private static handleError(error: any): Promise<any> {
-    console.error(error);
-    return Promise.reject(error.message || error);
   }
 }

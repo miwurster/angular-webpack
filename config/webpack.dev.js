@@ -36,9 +36,9 @@ module.exports = webpackMerge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         'ENV': JSON.stringify(ENV),
-        'NODE_ENV': JSON.stringify(ENV),
+        'NODE_ENV': JSON.stringify(ENV)
       }
-    }),
+    })
   ],
 
   /*
@@ -48,7 +48,7 @@ module.exports = webpackMerge(common, {
     port: 3000,
     historyApiFallback: true,
     watchOptions: { aggregateTimeout: 300, poll: 1000 },
-    contentBase: helpers.root('dist'),
-  },
+    contentBase: helpers.root('dist')
+  }
 
 });

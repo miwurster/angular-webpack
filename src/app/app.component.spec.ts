@@ -27,8 +27,8 @@ describe('AppComponent', () => {
   });
 
   it('has a title', () => {
-    let debug: DebugElement = fixture.debugElement.query(By.css('.navbar-brand'));
-    let element: HTMLElement = debug.nativeElement;
+    const debug: DebugElement = fixture.debugElement.query(By.css('.navbar-brand'));
+    const element: HTMLElement = debug.nativeElement;
     expect(element.textContent).toContain('Tour of Heroes');
   });
 });

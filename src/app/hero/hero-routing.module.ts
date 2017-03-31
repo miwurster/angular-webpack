@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeroComponent } from './hero.component';
-import { HeroDetailComponent } from './hero-detail';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroResolver } from './hero-resolver.service';
 
 const routes: Routes = [

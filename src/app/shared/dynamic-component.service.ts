@@ -1,8 +1,8 @@
-import { Injectable, ComponentFactoryResolver, Type, ViewContainerRef } from '@angular/core';
-import { DynamicComponentsDirective } from './dynamic-components.directive';
+import { Injectable, ComponentFactoryResolver, Type } from '@angular/core';
+import { DynamicComponentDirective } from './dynamic-component.directive';
 
 @Injectable()
-export class DynamicComponentsService {
+export class DynamicComponentService {
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
@@ -10,12 +10,12 @@ export class DynamicComponentsService {
    * Creates the ComposeMessageComponent dynamically
    * See cookbook: https://angular.io/docs/ts/latest/cookbook/dynamic-component-loader.html
    */
-  createComponent<T>(component: Type<T>, viewChild: DynamicComponentsDirective,
+  createComponent<T>(component: Type<T>, viewChild: DynamicComponentDirective,
                      callback: ((instance: T) => void)): void {
     // Clear all, meaning we can only have one dynamic component at one point in time
     viewChild.viewContainerRef.clear();
-    let componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-    let componentRef = viewChild.viewContainerRef.createComponent(componentFactory);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    const componentRef = viewChild.viewContainerRef.createComponent(componentFactory);
     callback(<T>componentRef.instance);
   }
 }

@@ -1,16 +1,24 @@
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-toggleable-sm bg-inverse sticky-top">
   <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/']">Tour of Heroes</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active"><a [routerLink]="['/crisis']">Crisis Center</a></li>
-      <li routerLinkActive="active"><a [routerLink]="['/heroes']">Heroes</a></li>
-      <li><a [routerLink]="['/', { outlets: { popup: ['compose'] } }]">Contact</a></li>
+    <a class="navbar-brand" [routerLink]="['/']">Tour of Heroes</a>
+    <ul class="navbar-nav">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/crisis']">Crisis Center</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/heroes']">Heroes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/', { outlets: { popup: ['compose'] } }]">Contact</a>
+      </li>
     </ul>
   </div>
 </nav>
 <div class="container">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 <router-outlet name="popup"></router-outlet>

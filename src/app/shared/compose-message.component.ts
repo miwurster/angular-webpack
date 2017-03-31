@@ -12,7 +12,7 @@ export class ComposeMessageComponent implements AfterViewInit {
   sending = false;
 
   @ViewChild('popup')
-  public popup: ModalDirective;
+  popup: ModalDirective;
 
   constructor(private router: Router) {}
 

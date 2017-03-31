@@ -15,7 +15,7 @@ module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',
     'vendor': './src/vendor.ts',
-    'main': './src/main.ts',
+    'main': './src/main.ts'
   },
 
   /*
@@ -25,14 +25,14 @@ module.exports = {
     path: helpers.root('dist'),
     filename: '[name].bundle.js',
     sourceMapFilename: '[name].map',
-    chunkFilename: '[id].chunk.js',
+    chunkFilename: '[id].chunk.js'
   },
 
   /*
    * https://webpack.js.org/configuration/resolve
    */
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
   },
 
   /**
@@ -42,7 +42,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: ['awesome-typescript-loader', 'angular2-template-loader'],
+        use: ['awesome-typescript-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
@@ -56,7 +56,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        use: ['raw-loader', 'postcss-loader']
+        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader']
       },
       {
         test: /\.scss$/,
@@ -66,7 +66,7 @@ module.exports = {
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
-        use: ['raw-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
+        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|ico|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -75,7 +75,7 @@ module.exports = {
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: ['url-loader?limit=8192&mimetype=application/font-woff&name=assets/[name].[hash].[ext]']
-      },
+      }
     ]
   },
 
@@ -99,22 +99,22 @@ module.exports = {
      * https://webpack.js.org/plugins/commons-chunk-plugin
      */
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['main', 'vendor', 'polyfills'],
+      name: ['main', 'vendor', 'polyfills']
     }),
 
     /*
      * https://github.com/kevlened/copy-webpack-plugin
      */
     new CopyWebpackPlugin([
-      { from: 'src/static' },
+      { from: 'src/static' }
     ]),
 
     /*
      * https://webpack.js.org/plugins/html-webpack-plugin/
      */
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-  ],
+      template: 'src/index.html'
+    })
+  ]
 
 };

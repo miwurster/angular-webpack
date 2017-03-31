@@ -1,4 +1,3 @@
-
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 
@@ -25,7 +24,7 @@ module.exports = webpackMerge(common, {
       sourceMap: true,
       compress: {
         warnings: true
-      },
+      }
     }),
 
     new webpack.LoaderOptionsPlugin({
@@ -39,9 +38,9 @@ module.exports = webpackMerge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         'ENV': JSON.stringify(ENV),
-        'NODE_ENV': JSON.stringify(ENV),
+        'NODE_ENV': JSON.stringify(ENV)
       }
-    }),
-  ],
+    })
+  ]
 
 });

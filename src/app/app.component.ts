@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 // import * as moment from 'moment';
 
 @Component({
-  selector: 'app',
+  selector: 'changeit-app',
   templateUrl: './app.component.html'
 })
 export class AppComponent {

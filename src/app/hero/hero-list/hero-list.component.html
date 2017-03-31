@@ -11,7 +11,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <spinner [show]="!initialized"></spinner>
+  <changeit-spinner [show]="!initialized"></changeit-spinner>
   <div class="list-group">
     <button *ngFor="let hero of heroes"
             [class.active]="hero === selection"

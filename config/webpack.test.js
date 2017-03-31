@@ -7,7 +7,7 @@ module.exports = {
   devtool: 'inline-source-map',
 
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html'],
+    extensions: ['.ts', '.js', '.json', '.css', '.scss', '.html']
   },
 
   module: {
@@ -32,7 +32,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        use: ['raw-loader', 'postcss-loader']
+        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader']
       },
       {
         test: /\.scss$/,
@@ -42,8 +42,8 @@ module.exports = {
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
-        use: ['raw-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
-      },
+        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
+      }
     ]
   },
 
@@ -56,8 +56,8 @@ module.exports = {
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       helpers.root('src'),
       {}
-    ),
+    )
 
-  ],
+  ]
 
 };

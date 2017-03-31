@@ -1,4 +1,4 @@
-import { combineReducers, State, ActionReducer } from '@ngrx/store';
+import { combineReducers } from '@ngrx/store';
 
 import * as fromCrisis from './crisis/crisis.reducer';
 
