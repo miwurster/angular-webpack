@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducers';
 import { Crisis } from '../shared/model/crisis.model';
-import { CrisisActions } from './crisis.actions';
+import { RefreshAction } from './crisis.actions';
 import { CrisisService } from './crisis.service';
 import { ComposeMessageComponent } from '../shared/compose-message.component';
 import { DynamicComponentDirective } from '../shared/dynamic-component.directive';
@@ -21,7 +21,6 @@ export class CrisisComponent implements OnInit {
   dynamicComponent: DynamicComponentDirective;
 
   constructor(private store: Store<AppState>,
-              private crisisActions: CrisisActions,
               private crisisService: CrisisService,
               private dynamicComponentService: DynamicComponentService) {
     this.data = this.store.select(state => state.crisis.data);
@@ -38,6 +37,6 @@ export class CrisisComponent implements OnInit {
   ngOnInit(): void {
     this.crisisService
         .findAll()
-        .then((data) => this.store.dispatch(this.crisisActions.refresh(data)));
+        .then((data) => this.store.dispatch(new RefreshAction(data)));
   }
 }

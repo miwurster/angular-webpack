@@ -10,7 +10,7 @@ if (process.env.ENV === 'production') {
 }
 
 if (module['hot']) {
-  console.log("Enable hot module replacement (HMR)...");
+  console.log('Enable hot module replacement (HMR)...');
   module['hot'].accept();
 }
 

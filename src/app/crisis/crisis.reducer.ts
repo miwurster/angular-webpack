@@ -1,6 +1,7 @@
-import { Action } from '@ngrx/store';
 import { Crisis } from '../shared/model/crisis.model';
-import { CrisisActions } from './crisis.actions';
+import * as CrisisActions from './crisis.actions';
+
+export type Action = CrisisActions.All;
 
 export interface CrisisState {
   data: Crisis[];

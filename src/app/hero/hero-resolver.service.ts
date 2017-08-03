@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Resolve, RouterStateSnapshot, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Hero } from '../shared/model/hero.model';
 import { HeroService } from './hero.service';
 
@@ -23,7 +23,6 @@ export class HeroResolver implements Resolve<Hero> {
                    this.router.navigate(['/404']);
                    return null;
                  }
-               })
-               .catch((error) => console.error('Error getting hero details', error));
+               });
   }
 }

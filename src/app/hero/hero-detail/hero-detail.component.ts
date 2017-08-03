@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Hero } from '../../shared/model/hero.model';
 import { HeroService } from '../hero.service';
 import { HeroDetailValidators } from './hero-detail.validators';
@@ -52,8 +52,7 @@ export class HeroDetailComponent implements OnInit {
       this.heroService.createHero(name)
           .then(() => console.log('Created a new hero'))
           .then(() => this.close());
-    }
-    else {
+    } else {
       this.heroService.updateHero(this.hero)
           .then(() => console.log('Updated an existing hero'))
           .then(() => this.close());
@@ -76,8 +75,7 @@ export class HeroDetailComponent implements OnInit {
             this.mode = EditorMode.EditHero;
             this.hero = data.hero;
             this.buildForm();
-          }
-          else {
+          } else {
             this.mode = EditorMode.CreateHero;
             this.hero = new Hero;
             this.buildForm();

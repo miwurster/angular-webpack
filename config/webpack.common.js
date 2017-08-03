@@ -51,22 +51,22 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader'])
+        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader?sourceMap'])
       },
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader']
+        use: ['to-string-loader', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'resolve-url-loader']
       },
       {
         test: /\.scss$/,
         exclude: helpers.root('src', 'app'),
-        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader', 'resolve-url-loader', 'sass-loader'])
+        loader: ExtractTextPlugin.extract(['css-loader?sourceMap', 'postcss-loader?sourceMap', 'resolve-url-loader', 'sass-loader'])
       },
       {
         test: /\.scss$/,
         include: helpers.root('src', 'app'),
-        use: ['to-string-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
+        use: ['to-string-loader', 'css-loader?sourceMap', 'postcss-loader?sourceMap', 'resolve-url-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|ico|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -90,7 +90,7 @@ module.exports = {
      * https://github.com/angular/angular/issues/11580
      */
     new webpack.ContextReplacementPlugin(
-      /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+      /angular(\\|\/)core(\\|\/)@angular/,
       helpers.root('src'),
       {}
     ),

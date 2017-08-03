@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModalModule } from 'ng2-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DummyDataService } from './in-memory-data.service';
 import { SortPipe } from './sort.pipe';
