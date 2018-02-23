@@ -1,3 +1,11 @@
+
+# DEPRECATED
+
+Unless you have very, very good reasons, consider using [`@angular/cli`](https://github.com/angular/angular-cli) in order to bootstrap, manage, and work with your Angular projects.
+If you need a specialized setup, you may `export` a Webpack configuration using `@angular/cli` and go ahead from there.
+
+---
+
 Tour of Heroes: Editor
 ----------------------
 
